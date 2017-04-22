@@ -219,8 +219,6 @@ app.set('views', path.join(__dirname, '/public/views'))
 app.engine('ejs', ejs.renderFile)
 // set view engine
 app.set('view engine', 'ejs')
-// get index
-app.get('/', response.showIndex)
 // get 403 forbidden
 app.get('/403', function (req, res) {
   response.errorForbidden(res)
@@ -582,6 +580,10 @@ app.post('/uploadimage', function (req, res) {
       }
     }
   })
+})
+// get index
+app.get('/', function (req, res, next){
+  res.redirect(config.serverurl + '/s/FrontPage')
 })
 // get new note
 app.get('/new', response.newNoteReady)
