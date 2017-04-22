@@ -1,4 +1,13 @@
 <form action="/new" id="newPageForm">
 PageName: <input type="text" id="pageName"><br>
-<input type="button" onClick="var f = $('#newPageForm'); f.attr({action: '/new/'+$('#pageName').val()}); f.submit(); return false;" value="Create Page">
+<select name="template" id="template">
+<option value="default" selected=selected>default</option>
+<option value="default0">default0</option>
+</select>
+<input type="button"
+onClick="var f = $('#newPageForm'); 
+var url='/new/'+$('#pageName').val();
+f.attr({action: url});
+f.submit(); return false;"
+value="Create Page">
 </form>
