@@ -65,7 +65,7 @@
     <h2>Pages</h2>
     <ul class="nav nav-sidebar">
     <% for (var i = 0; i < noteList.length; i++) { %>
-      <li class="page"><a href="/s/<%= noteList[i].id %>"><%= noteList[i].id %></a></li>
+      <li class="page"><a class="pageLink" href="/s/<%= noteList[i].id %>"><%= noteList[i].id %></a></li>
     <% } %>
     </ul>
     </div>

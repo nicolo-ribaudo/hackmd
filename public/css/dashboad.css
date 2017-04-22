@@ -25,7 +25,6 @@ li.page {
     border-right: 1px solid #eee;
   }
 }
-
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
@@ -41,6 +40,11 @@ li.page {
 .nav-sidebar > .active > a:focus {
   color: #fff;
   background-color: #428bca;
+}
+
+li.page a.pageLink {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 /*
