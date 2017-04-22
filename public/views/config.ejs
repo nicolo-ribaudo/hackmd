@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include hackmd/head %>
+</head>
+
+<body>
+    <%- include hackmd/header %>
+    <div class="container-fluid">
+        <h1>Configuration</h1>
+        <h2>Farms</h2>
+        New Farm Name<form action="<%- url %>/config/farm/new">
+        <input type="text" name="name"><input type="submit" value="register">
+        </form>
+        <% for (var i = 0; i < farmList.length; i++) { %>
+            <li class="page"><a class="pageLink" href="/s/<%= farmList[i].id %>"><%= farmList[i].name %></a></li>
+        <% } %>
+
+    </div>
+    
+    <%- include hackmd/footer %>
+</body>
+
+</html>

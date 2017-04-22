@@ -21,6 +21,7 @@ var helmet = require('helmet')
 var i18n = require('i18n')
 var flash = require('connect-flash')
 var validator = require('validator')
+farmName = ""
 
 // core
 var config = require('./lib/config.js')
@@ -199,6 +200,19 @@ app.use(function (req, res, next) {
   next()
 })
 
+// get farmName
+app.use(function (req, res, next) {
+  if (req.path.match(/(?:\w+\/)?(\w+)~(?:\w+)?(\b|$)?/)) {
+    farmName = RegExp.$1
+    console.log("!!!!!!!!!!!!!!!!!!!!!")
+    console.log(farmName)
+    console.log("!!!!!!!!!!!!!!!!!!!!!")
+  } else {
+    farmName = ""
+  }
+  next()
+})
+
 // redirect url without trailing slashes
 app.use(function (req, res, next) {
   if (req.method === 'GET' && req.path.substr(-1) === '/' && req.path.length > 1) {
@@ -356,7 +370,7 @@ if (config.github) {
         }))
   if (!config.gitlab.scope || config.gitlab.scope === 'api') {
     // gitlab callback actions
-    app.get('/auth/gitlab/callback/:noteId/:action', response.gitlabActions)
+    app.get('/auth/gitlab/callback/:noteId(((\\w+~)?\\w+))/:action', response.gitlabActions)
   }
 }
 // gitlab auth
@@ -372,7 +386,7 @@ if (config.gitlab) {
           failureRedirect: config.serverurl + '/'
         }))
   // gitlab callback actions
-  app.get('/auth/gitlab/callback/:noteId/:action', response.gitlabActions)
+  app.get('/auth/gitlab/callback/:noteId(((\\w+~)?\\w+))/:action', response.gitlabActions)
 }
 // dropbox auth
 if (config.dropbox) {
@@ -472,11 +486,11 @@ app.get('/history', history.historyGet)
 // post history
 app.post('/history', urlencodedParser, history.historyPost)
 // post history by note id
-app.post('/history/:noteId', urlencodedParser, history.historyPost)
+app.post('/history/:noteId(((\\w+~)?\\w+))', urlencodedParser, history.historyPost)
 // delete history
 app.delete('/history', history.historyDelete)
 // delete history by note id
-app.delete('/history/:noteId', history.historyDelete)
+app.delete('/history/:noteId(((\\w+~)?\\w+))', history.historyDelete)
 // get me info
 app.get('/me', function (req, res) {
   if (req.isAuthenticated()) {
@@ -585,24 +599,35 @@ app.post('/uploadimage', function (req, res) {
 app.get('/', function (req, res, next){
   res.redirect(config.serverurl + '/s/FrontPage')
 })
+
+// get config page
+app.get('/config', response.showConfig)
+// new config farm
+app.get('/config/farm/new', response.setConfigFarm)
+
+app.get('/s', function(req,res,next){return res.redirect(config.serverurl + "/s/FrontPage")})
 // get new note
 app.get('/new', response.newNoteReady)
 // get new note
-app.get('/new/:noteId', response.newNote)
+app.get('/:farmName(\\w+~)/new', response.newNoteReady)
+// get new note
+app.get('/new/:noteId(((\\w+~)?\\w+))', response.newNote)
+// get farm top
+app.get('/s/:noteId(\\w+~$)', response.farmTop)
 // get publish note
-app.get('/s/:noteId', response.showPublishNote)
+app.get('/s/:noteId(((\\w+~)?\\w+))', response.showPublishNote)
 // publish note actions
-app.get('/s/:noteId/:action', response.publishNoteActions)
+app.get('/s/:noteId(((\\w+~)?\\w+))/:action', response.publishNoteActions)
 // get publish slide
-app.get('/p/:noteId', response.showPublishSlide)
+app.get('/p/:noteId(((\\w+~)?\\w+))', response.showPublishSlide)
 // publish slide actions
-app.get('/p/:noteId/:action', response.publishSlideActions)
+app.get('/p/:noteId(((\\w+~)?\\w+))/:action', response.publishSlideActions)
 // get note by id
-app.get('/:noteId', response.showNote)
+app.get('/:noteId(((\\w+~)?\\w+))', response.showNote)
 // note actions
-app.get('/:noteId/:action', response.noteActions)
+app.get('/:noteId(((\\w+~)?\\w+))/:action', response.noteActions)
 // note actions with action id
-app.get('/:noteId/:action/:actionId', response.noteActions)
+app.get('/:noteId(((\\w+~)?\\w+))/:action/:actionId', response.noteActions)
 // response not found if no any route matches
 app.get('*', function (req, res) {
   response.errorNotFound(res)

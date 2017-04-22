@@ -6,7 +6,7 @@ PageName: <input type="text" id="pageName"><br>
 </select>
 <input type="button"
 onClick="var f = $('#newPageForm'); 
-var url='/new/'+$('#pageName').val();
+var url='/new/<%- farmName !== "" ? farmName + "~" : "" %>'+$('#pageName').val();
 f.attr({action: url});
 f.submit(); return false;"
 value="Create Page">
