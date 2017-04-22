@@ -584,15 +584,17 @@ app.post('/uploadimage', function (req, res) {
   })
 })
 // get new note
-app.get('/new', response.newNote)
+app.get('/new', response.newNoteReady)
+// get new note
+app.get('/new/:noteId', response.newNote)
 // get publish note
-app.get('/s/:shortid', response.showPublishNote)
+app.get('/s/:noteId', response.showPublishNote)
 // publish note actions
-app.get('/s/:shortid/:action', response.publishNoteActions)
+app.get('/s/:noteId/:action', response.publishNoteActions)
 // get publish slide
-app.get('/p/:shortid', response.showPublishSlide)
+app.get('/p/:noteId', response.showPublishSlide)
 // publish slide actions
-app.get('/p/:shortid/:action', response.publishSlideActions)
+app.get('/p/:noteId/:action', response.publishSlideActions)
 // get note by id
 app.get('/:noteId', response.showNote)
 // note actions

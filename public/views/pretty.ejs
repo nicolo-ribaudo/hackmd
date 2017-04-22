@@ -26,9 +26,11 @@
     <%- include build/pretty-header %>
   <% } else { %>
     <link rel="stylesheet" href='<%- url %>/build/emojify.js/dist/css/basic/emojify.min.css'>
+    <link rel="stylesheet" href='<%- url %>/build/emojify.js/dist/css/basic/emojify.min.css'>
     <%- include build/pretty-pack-header %>
   <% } %>
     <%- include shared/polyfill %>
+    <link rel="stylesheet" href='<%- url %>/css/dashboad.css'>
 </head>
 
 <body style="display:none;">
@@ -53,7 +55,22 @@
             <% } %>
         </small>
     </div>
-    <div id="doc" class="container markdown-body"><%= body %></div>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-2 col-md-2 sidebar">
+    <h2>Menu</h2>
+    <ul class="nav nav-sidebar">
+    <li><a href="/new">New Page</a></li>
+    </ul>
+    <h2>Pages</h2>
+    <ul class="nav nav-sidebar">
+    <% for (var i = 0; i < noteList.length; i++) { %>
+      <li class="page"><a href="/s/<%= noteList[i].id %>"><%= noteList[i].id %></a></li>
+    <% } %>
+    </ul>
+    </div>
+    <div class="col-sm-9 col-md-10 main">
+    <div id="doc" class="markdown-body"><%= body %></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
             <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
@@ -63,12 +80,14 @@
             </ul>
         </div>
     </div>
+    </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="display:none;"></div>
     <% if(typeof disqus !== 'undefined' && disqus) { %>
     <div class="container-fluid" style="max-width: 758px; margin-bottom: 40px;">
         <%- include shared/disqus %>
     </div>
     <% } %>
+    </div>
 </body>
 
 </html>
