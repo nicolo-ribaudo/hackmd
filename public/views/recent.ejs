@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include hackmd/head %>
+</head>
+
+<body>
+    <%- include hackmd/header %>
+    <div class="container-fluid">
+        <h1>Recent Updated Notes</h1>
+        <% for (var i = 0; i < noteList.length; i++) { %>
+            <li class="page"><a class="pageLink" href="/s/<%= noteList[i].id %>">
+            <%= farmName !== "" ? noteList[i].id.substr(farmName.length + 1) : noteList[i].id %>
+            </a></li>
+        <% } %>
+
+    </div>
+    
+    <%- include hackmd/footer %>
+</body>
+
+</html>

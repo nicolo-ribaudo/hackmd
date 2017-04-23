@@ -600,6 +600,11 @@ app.get('/', function (req, res, next){
   res.redirect(config.serverurl + '/s/FrontPage')
 })
 
+var res404 = function (req, res) { return response.errorNotFound(res) }
+
+// favicon
+app.get('/:image((\\w+/)?\\w+.(png|gif|ico|jpg))', res404)
+
 // get config page
 app.get('/config', response.showConfig)
 // new config farm
@@ -608,8 +613,15 @@ app.get('/config/farm/new', response.setConfigFarm)
 app.get('/s', function(req,res,next){return res.redirect(config.serverurl + "/s/FrontPage")})
 // get new note
 app.get('/new', response.newNoteReady)
+// get recent updated note list
+app.get('/recent', response.recentNoteList)
+// get recent updated note list
+app.get('/:farmName(\\w+~)/recent', response.recentNoteList)
 // get new note
 app.get('/:farmName(\\w+~)/new', response.newNoteReady)
+// 404 pages
+app.get('/:path(\\w+)/:name(new|recent|config)', res404)
+app.get('/:farmName(\\w+~)/:path(\\w+)/:name(new|recent|config)', res404)
 // get new note
 app.get('/new/:noteId(((\\w+~)?[^/]+))', response.newNote)
 // get farm top

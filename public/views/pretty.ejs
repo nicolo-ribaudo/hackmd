@@ -66,9 +66,21 @@
     <ul class="nav nav-sidebar">
     <% for (var i = 0; i < noteList.length; i++) { %>
       <li class="page"><a class="pageLink" href="/s/<%= noteList[i].id %>">
-      <%= farmName != "" ? noteList[i].id.substr(farmName.length+1) : noteList[i].id %></a></li>
+      <%= farmName !== "" ? noteList[i].id.substr(farmName.length+1) : noteList[i].id %></a></li>
     <% } %>
     </ul>
+    <h2>Recently Updated</h2>
+    <ul class="nav nav-sidebar">
+    <% console.log(recentOrderIndex) %>
+    <% for (var i = 0; i < recentOrderIndex.length; i++) { let j = recentOrderIndex[i] %>
+      <li class="page"><a class="pageLink" href="/s/<%= noteList[j].id %>">
+      <%= farmName !== "" ? noteList[j].id.substr(farmName.length+1) : noteList[j].id %></a></li>
+      <% if (i === 4) break %>
+    <% } %>
+    </ul>
+    <% if (recentOrderIndex.length > 5) { %>
+       <a href="<%= farmName !== "" ? farmName + '~/' : '' %>/recent">see more</a>
+    <% } %>
     </div>
     <div class="col-sm-9 col-md-10 main">
     <div id="doc" class="markdown-body"><%= body %></div>
