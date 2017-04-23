@@ -370,7 +370,7 @@ if (config.github) {
         }))
   if (!config.gitlab.scope || config.gitlab.scope === 'api') {
     // gitlab callback actions
-    app.get('/auth/gitlab/callback/:noteId(((\\w+~)?\\w+))/:action', response.gitlabActions)
+    app.get('/auth/gitlab/callback/:noteId(((\\w+~)?[^/]+))/:action', response.gitlabActions)
   }
 }
 // gitlab auth
@@ -386,7 +386,7 @@ if (config.gitlab) {
           failureRedirect: config.serverurl + '/'
         }))
   // gitlab callback actions
-  app.get('/auth/gitlab/callback/:noteId(((\\w+~)?\\w+))/:action', response.gitlabActions)
+  app.get('/auth/gitlab/callback/:noteId((([^/]+~)?\\w+))/:action', response.gitlabActions)
 }
 // dropbox auth
 if (config.dropbox) {
@@ -486,11 +486,11 @@ app.get('/history', history.historyGet)
 // post history
 app.post('/history', urlencodedParser, history.historyPost)
 // post history by note id
-app.post('/history/:noteId(((\\w+~)?\\w+))', urlencodedParser, history.historyPost)
+app.post('/history/:noteId(((\\w+~)?[^/]+))', urlencodedParser, history.historyPost)
 // delete history
 app.delete('/history', history.historyDelete)
 // delete history by note id
-app.delete('/history/:noteId(((\\w+~)?\\w+))', history.historyDelete)
+app.delete('/history/:noteId(((\\w+~)?[^/]+))', history.historyDelete)
 // get me info
 app.get('/me', function (req, res) {
   if (req.isAuthenticated()) {
@@ -611,23 +611,23 @@ app.get('/new', response.newNoteReady)
 // get new note
 app.get('/:farmName(\\w+~)/new', response.newNoteReady)
 // get new note
-app.get('/new/:noteId(((\\w+~)?\\w+))', response.newNote)
+app.get('/new/:noteId(((\\w+~)?[^/]+))', response.newNote)
 // get farm top
 app.get('/s/:noteId(\\w+~$)', response.farmTop)
 // get publish note
-app.get('/s/:noteId(((\\w+~)?\\w+))', response.showPublishNote)
+app.get('/s/:noteId(((\\w+~)?[^/]+))', response.showPublishNote)
 // publish note actions
-app.get('/s/:noteId(((\\w+~)?\\w+))/:action', response.publishNoteActions)
+app.get('/s/:noteId(((\\w+~)?[^/]+))/:action', response.publishNoteActions)
 // get publish slide
-app.get('/p/:noteId(((\\w+~)?\\w+))', response.showPublishSlide)
+app.get('/p/:noteId(((\\w+~)?[^/]+))', response.showPublishSlide)
 // publish slide actions
-app.get('/p/:noteId(((\\w+~)?\\w+))/:action', response.publishSlideActions)
+app.get('/p/:noteId(((\\w+~)?[^/]+))/:action', response.publishSlideActions)
 // get note by id
-app.get('/:noteId(((\\w+~)?\\w+))', response.showNote)
+app.get('/:noteId(((\\w+~)?[^/]+))', response.showNote)
 // note actions
-app.get('/:noteId(((\\w+~)?\\w+))/:action', response.noteActions)
+app.get('/:noteId(((\\w+~)?[^/]+))/:action', response.noteActions)
 // note actions with action id
-app.get('/:noteId(((\\w+~)?\\w+))/:action/:actionId', response.noteActions)
+app.get('/:noteId(((\\w+~)?[^/]+))/:action/:actionId', response.noteActions)
 // response not found if no any route matches
 app.get('*', function (req, res) {
   response.errorNotFound(res)
