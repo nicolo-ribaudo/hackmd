@@ -256,7 +256,6 @@ var statusType = {
   }
 }
 var defaultMode = modeType.view
-
 // global vars
 window.loaded = false
 window.needRefresh = false
@@ -267,7 +266,11 @@ window.visibleSM = false
 window.visibleMD = false
 window.visibleLG = false
 window.isTouchDevice = 'ontouchstart' in document.documentElement
-window.currentMode = defaultMode
+if (window.url().match('\\?template=')) {
+  window.currentMode = modeType.both
+} else {
+  window.currentMode = defaultMode
+}
 window.currentStatus = statusType.offline
 window.lastInfo = {
   needRestore: false,
