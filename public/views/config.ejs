@@ -14,7 +14,7 @@
         <input type="text" name="name"><input type="submit" value="register">
         </form>
         <% for (var i = 0; i < farmList.length; i++) { %>
-            <li class="page"><a class="pageLink" href="/s/<%= farmList[i].id %>"><%= farmList[i].name %></a></li>
+            <li class="page"><a class="pageLink" href="/s/<%= farmList[i].name %>~"><%= farmList[i].name %></a></li>
         <% } %>
 
     </div>
