@@ -31,37 +31,16 @@
   <% } %>
     <%- include shared/polyfill %>
     <link rel="stylesheet" href='<%- url %>/css/dashboad.css'>
+    <%- include pretty/head %>
 </head>
 
 <body style="display:none;">
-    <div class="ui-infobar container-fluid unselectable hidden-print">
-        <small>
-            <span>
-                <% if(lastchangeuserprofile) { %>
-                    <span class="ui-lastchangeuser">&thinsp;<i class="ui-user-icon small" style="background-image: url(<%- lastchangeuserprofile.photo %>);" data-toggle="tooltip" data-placement="right" title="<%- lastchangeuserprofile.name %>"></i></span>
-                <% } else { %>
-                  <span class="ui-no-lastchangeuser">&thinsp;<i class="fa fa-clock-o fa-fw" style="width: 18px;"></i></span>
-                <% } %>
-                &nbsp;<span class="text-uppercase ui-status-lastchange"></span>
-                <span class="ui-lastchange text-uppercase" data-createtime="<%- createtime %>" data-updatetime="<%- updatetime %>"></span>
-            </span>
-            <span class="pull-right"><%- viewcount %> views <a href="#" class="ui-edit" title="Edit this note"><i class="fa fa-fw fa-pencil"></i></a></span>
-            <br>
-            <% if(ownerprofile && owner !== lastchangeuser) { %>
-            <span class="ui-owner">
-                &thinsp;<i class="ui-user-icon small" style="background-image: url(<%- ownerprofile.photo %>);" data-toggle="tooltip" data-placement="right" title="<%- ownerprofile.name %>"></i>
-                &nbsp;<span class="text-uppercase">owned this note</span>
-            </span>
-            <% } %>
-        </small>
-    </div>
+    <%- include pretty/header %>
+
     <div class="container-fluid">
     <div class="row">
-    <div class="col-sm-2 col-md-2 sidebar">
-    <h2>Menu</h2>
-    <ul class="nav nav-sidebar">
-    <li><a href="<%= farmName !== "" ? "/" + farmName + "~" : "" %>/new">New Page</a></li>
-    </ul>
+
+    <div class="col-sm-2 col-md-2 sidebar" style="margin-top:-50px">
     <h2>Pages</h2>
     <ul class="nav nav-sidebar">
     <% for (var i = 0; i < noteList.length; i++) { %>
@@ -79,9 +58,10 @@
     <% } %>
     </ul>
     <% if (recentOrderIndex.length > 5) { %>
-       <a href="<%= farmName !== "" ? farmName + '~/' : '' %>/recent">see more</a>
+       <a href="<%= farmPath %>/recent">see more</a>
     <% } %>
     </div>
+    
     <div class="col-sm-9 col-md-10 main">
     <div id="doc" class="markdown-body"><%= body %></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">

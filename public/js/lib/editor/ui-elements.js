@@ -9,6 +9,7 @@ export const getUIElements = () => ({
     shortStatus: $('.ui-short-status'),
     status: $('.ui-status'),
     new: $('.ui-new'),
+    save: $('.ui-save'),
     publish: $('.ui-publish'),
     extra: {
       revision: $('.ui-extra-revision'),

@@ -100,5 +100,7 @@
 	"Select From Available Snippets": "スニペットを一覧から選択してください",
 	"OR": "または",
 	"Export to Snippet": "スニペットにエクスポート",
-	"Select Visibility Level": "公開範囲を選んでください"
+	"Select Visibility Level": "公開範囲を選んでください",
+	"Wiki": "Wikiを表示",
+	"Save": "保存"
 }

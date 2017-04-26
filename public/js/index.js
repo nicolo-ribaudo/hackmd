@@ -938,6 +938,9 @@ function onGoogleAPILoaded () {
 window.onGoogleAPILoaded = onGoogleAPILoaded
 
 // button actions
+// save
+ui.toolbar.save.click(function (e) { $.get(noteurl + '/publish');return false } )
+ui.toolbar.save.attr('href',  noteurl + '/publish')
 // share
 ui.toolbar.publish.attr('href', noteurl + '/publish')
 // extra
