@@ -939,7 +939,8 @@ window.onGoogleAPILoaded = onGoogleAPILoaded
 
 // button actions
 // wiki
-ui.toolbar.publish.attr('href', noteurl)
+var prettyUrl = noteurl.replace(/^(https?\:\/\/[^\/]+)/, '$1/s')
+ui.toolbar.wiki.click(function (e) {location.href = prettyUrl})
 // save
 ui.toolbar.save.click(function (e) { $.get(noteurl + '/publish');return false } )
 // share
