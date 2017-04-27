@@ -81,6 +81,7 @@
     </div>
     <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-form navbar-left" style="padding:0;">
+        <% if (noteId) { %>
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-default ui-view" title="<%= __('View') %>" onclick="location.href='/<% farmPath %><%- noteId %>?view'">
                     <input type="radio" name="mode" autocomplete="off"><i class="fa fa-eye"></i>
@@ -92,7 +93,9 @@
                     <input type="radio" name="mode" autocomplete="off"><i class="fa fa-pencil"></i>
                 </label>
             </div>
+            <% } %>
             </span>
+            <% if (noteId != null) { %>
                <% if(lastchangeuserprofile) { %>
                    <span class="ui-lastchangeuser">&thinsp;<i class="ui-user-icon small" style="background-image: url(<%- lastchangeuserprofile.photo %>);" data-toggle="tooltip" data-placement="right" title="<%- lastchangeuserprofile.name %>"></i></span>
                <% } else { %>
@@ -100,13 +103,14 @@
               <% } %>
               &nbsp;<span class="text-uppercase ui-status-lastchange"></span>
               <span class="ui-lastchange text-uppercase" data-createtime="<%- createtime %>" data-updatetime="<%- updatetime %>"></span>
-            
+
             <%- viewcount %> views
             <% if(ownerprofile && owner !== lastchangeuser) { %>
             <span class="ui-owner">
                 &thinsp;<i class="ui-user-icon small" style="background-image: url(<%- ownerprofile.photo %>);" data-toggle="tooltip" data-placement="right" title="<%- ownerprofile.name %>"></i>
                 &nbsp;<span class="text-uppercase">owned this note</span>
             </span>
+            <% } %>
             <% } %>
             </span>
 
@@ -128,6 +132,7 @@
                 </a>
             </li>
             <li>
+            <% if (noteId) { %>
                 <a data-toggle="dropdown">
                     <%= __('Menu') %> <i class="fa fa-caret-down"></i>
                 </a>
@@ -162,6 +167,7 @@
                     <li role="presentation"><a role="menuitem" class="ui-download-pdf-beta" tabindex="-1" href="#" target="_self"><i class="fa fa-file-pdf-o fa-fw"></i> PDF (Beta)</a>
                     </li>
                 </ul>
+                <% } %>
             </li>
         </ul>
     </div>

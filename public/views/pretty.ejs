@@ -2,36 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="mobile-web-app-capable" content="yes">
-    <% if(typeof robots !== 'undefined' && robots) { %>
-    <meta name="robots" content="<%= robots %>">
-    <% } %>
-    <% if(typeof description !== 'undefined' && description) { %>
-    <meta name="description" content="<%= description %>">
-    <% } %>
-    <title><%= title %></title>
-    <link rel="icon" type="image/png" href="<%- url %>/favicon.png">
-  <link rel="apple-touch-icon" href="<%- url %>/apple-touch-icon.png">
-  <% if(useCDN) { %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
-    <%- include build/pretty-header %>
-  <% } else { %>
-    <link rel="stylesheet" href='<%- url %>/build/emojify.js/dist/css/basic/emojify.min.css'>
-    <link rel="stylesheet" href='<%- url %>/build/emojify.js/dist/css/basic/emojify.min.css'>
-    <%- include build/pretty-pack-header %>
-  <% } %>
-    <%- include shared/polyfill %>
-    <link rel="stylesheet" href='<%- url %>/css/dashboad.css'>
-    <%- include pretty/head %>
+    <%- include hackmd/head %>
 </head>
 
 <body style="display:none;">
@@ -40,7 +11,7 @@
     <div class="container-fluid">
     <div class="row">
 
-    <div class="col-sm-2 col-md-2 sidebar" style="margin-top:-50px">
+    <div class="col-sm-2 col-md-2 sidebar">
     <h2>Pages</h2>
     <ul class="nav nav-sidebar">
     <% for (var i = 0; i < noteList.length; i++) { %>
@@ -82,7 +53,6 @@
     <% } %>
     </div>
 </body>
-
 </html>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ messageStyle: "none", skipStartupTypeset: true ,tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true }});
