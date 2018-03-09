@@ -10,7 +10,6 @@ export const getUIElements = () => ({
     status: $('.ui-status'),
     wiki: $('.ui-wiki'),
     new: $('.ui-new'),
-    save: $('.ui-save'),
     publish: $('.ui-publish'),
     extra: {
       revision: $('.ui-extra-revision'),

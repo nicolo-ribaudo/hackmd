@@ -609,6 +609,10 @@ app.get('/:image((\\w+/)?\\w+.(png|gif|ico|jpg))', res404)
 app.get('/config', response.showConfig)
 // new config farm
 app.get('/config/farm/new', response.setConfigFarm)
+// farm cofnig page
+app.get('/:farmName((\\w+~))/config', response.showFarmConfig)
+// farm user register
+app.post('/:farmName((\\w+~))/config', urlencodedParser, response.registerFarmConfig)
 
 app.get('/s', function(req,res,next){return res.redirect(config.serverurl + "/s/FrontPage")})
 // get new note
